@@ -24,3 +24,15 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.degradado{
+    --background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(116,169,214,1) 9%, rgba(52,147,149,1) 88%);
+    color: aliceblue ;
+}
+
+.input {
+    border: solid 1px cornflowerblue;
+    border-radius: 5px;
+}
+
+

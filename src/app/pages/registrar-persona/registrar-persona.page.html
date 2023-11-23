@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="degradado">
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title slot="start">¡Registrate!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card class="container-registro">
+    <ion-card-header>
+      <ion-card-title >Registro</ion-card-title>
+    </ion-card-header>
+
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="nuevoUser"> </ion-input>
+    </ion-item>
+
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input type="{{ showPassword ? 'text' : 'password' }}" label="Contraseña" [(ngModel)]="nuevaContrasena" labelPlacement="floating"></ion-input>
+      <ion-buttons slot="end">
+        <ion-buttons (click)="togglePassword()">
+          <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" size="small"></ion-icon>
+        </ion-buttons>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Correo" labelPlacement="floating" [(ngModel)]="nuevoCorreo"> </ion-input>
+    </ion-item>
+
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="nuevoNombre"> </ion-input>
+    </ion-item>
+
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Apellido" labelPlacement="floating" [(ngModel)]="nuevoApellido"> </ion-input>
+    </ion-item>
+
+    
+
+    <ion-button (click)="almacenarUsuario()" expand="" class="btn-reg">Registrarme</ion-button>
+
+  </ion-card>
+</ion-content>
