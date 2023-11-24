@@ -5,24 +5,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card class="container-registro ion-padding">
+  <ion-card class="container-cambiarContrasena ion-padding">
     <ion-card-header>
       <ion-card-title >Cambia tu contraseña</ion-card-title>
     </ion-card-header>
 
-    <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Contraseña actual" labelPlacement="floating" [(ngModel)]="mdl_actual"> </ion-input>
+    <ion-item class="ion-margin-top input" >
+      <ion-input label="Contraseña actual" labelPlacement="floating" lines="none"[(ngModel)]="mdl_actual"> </ion-input>
     </ion-item>
 
-    <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-item class="ion-margin-top input" >
       <ion-input label="Contraseña Nueva" labelPlacement="floating" [(ngModel)]="mdl_nueva"> </ion-input>
     </ion-item>
 
-    <ion-item class="fondo input ion-margin-top" lines="none">
+    <ion-item class="ion-margin-top input" >
       <ion-input label="Confirmar contraseña nueva" labelPlacement="floating" [(ngModel)]="mdl_confirmacion"> </ion-input>
     </ion-item>
 
     <ion-button (click)="cambiarContrasena()" expand="" class="btn-reg ion-padding">Cambiar Contrasena</ion-button>
-    
+
+    <ion-item *ngIf="v_visible" color="warning" class="ion-margin-top ion-text-center" >
+      <ion-label><strong> {{v_mensaje}} </strong></ion-label>
+    </ion-item>
   </ion-card>
 </ion-content>

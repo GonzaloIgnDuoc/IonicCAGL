@@ -21,6 +21,17 @@ export class BaseDatosService {
             .catch(e => console.log('CAGL: Error crear tabla'+ e));
         })
         .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
+
+        this.sqlite.create({
+          name: 'data.db',
+          location: 'default'
+        })
+        .then((db: SQLiteObject) => {
+          db.executeSql('create table if not exists sesion (usuario varchar(30),contrasena varchar(20))', [])
+              .then(() => console.log('CAGL: TABLA SESION CREADA'))
+              .catch(e => console.log('CAGL: Error crear tabla SESION'+ e));
+          })
+          .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
     }
 
    almacenarUsuario(usuario:string , correo:string, nombre:string,apellido:string, contrasena:string){
@@ -32,6 +43,48 @@ export class BaseDatosService {
       db.executeSql('insert into usuario values(?, ?, ?, ?, ?)', [usuario,contrasena,correo,nombre,apellido])
           .then(() => console.log('CAGL: Persona registrada ok'))
           .catch(e => console.log('CAGL: Error al registrar persona'+ JSON.stringify(e)));
+      })
+      .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
+   }
+
+   almacenarSesion(usuario:string, contrasena:string){
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+      db.executeSql('insert into sesion values(?, ?)', [usuario,contrasena])
+          .then(() => console.log('CAGL: Persona almacenada ok'))
+          .catch(e => console.log('CAGL: Error al almacenar persona'+ JSON.stringify(e)));
+      })
+      .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
+   }
+
+   cerrarSesion(){
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+      db.executeSql('delete from sesion', [])
+          .then(() => console.log('CAGL: Sesion cerrada'))
+          .catch(e => console.log('CAGL: Error al cerrar sesion'+ JSON.stringify(e)));
+      })
+      .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
+   }
+
+   validarSesion(){
+    return this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+      return db.executeSql('select count(usuario) as cantidad from sesion', [])
+          .then((data) =>{
+            console.log('CAGL: Usuarios en sesion encontrados: ' + data.rows.item(0).cantidad)
+            return data.rows.item(0).cantidad;
+          })
+          .catch(e => console.log('CAGL: Error al realizar sesion'+ JSON.stringify(e)));
       })
       .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
    }
@@ -69,6 +122,24 @@ export class BaseDatosService {
             return objeto;
           })
           .catch(e => console.log('CAGL: Error al mostrar personaa'+ JSON.stringify(e)));
+      })
+      .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
+   }
+
+   obtenerSesion(){
+    return this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+      return db.executeSql('select  usuario,contrasena from sesion', [])
+          .then((data) =>{
+            let objeto: any = {};
+            objeto.usuario=data.rows.item(0).usuario;
+            objeto.contrasena=data.rows.item(0).contrasena;
+            return objeto;
+          })
+          .catch(e => console.log('CAGL: Error al obtener sesion'+ JSON.stringify(e)));
       })
       .catch(e => console.log('CAGL: Error al crear o abrir DB'+ JSON.stringify(e)));
    }

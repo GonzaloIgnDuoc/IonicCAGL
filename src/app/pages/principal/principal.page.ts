@@ -28,7 +28,17 @@ export class PrincipalPage implements OnInit {
     this.infoUsuario();
     console.log('CAGL: Usuario en principal: ' + this.usuario)
     console.log('CAGL: Contraseña en principal: ' + this.contrasena)
-    console.log('CAGL: nombre en principal: ' + this.nombre)
+
+    if(this.usuario == ''){
+      console.log('Vacio');
+      this.db.obtenerSesion().then(data =>{
+        this.usuario = data.usuario;
+        this.contrasena= data.contrasena;
+        this.infoUsuario();
+      })
+    }else{
+      this.infoUsuario();
+    }
   }
 
   volverLogin(){
@@ -57,5 +67,12 @@ export class PrincipalPage implements OnInit {
       },replaceUrl: true
     } 
     this.router.navigate(['cambiar-contrasena'],extras)
+  }
+  cerrarSesion(){
+    this.db.cerrarSesion();
+    let extras: NavigationExtras={
+      replaceUrl: true
+    }
+    this.router.navigate(['login'],extras);
   }
 }

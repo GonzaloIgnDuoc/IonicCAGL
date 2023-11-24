@@ -33,6 +33,7 @@ export class LoginPage implements OnInit {
     this.db.loginUsuario(this.mdl_usuario,this.mdl_contrasena)
       .then(data =>{
         if(data == 1){
+          this.db.almacenarSesion(this.mdl_usuario,this.mdl_contrasena)
           console.log('CAGL: credenciales validas')
           this.router.navigate(['principal'],extras);
         }else{
