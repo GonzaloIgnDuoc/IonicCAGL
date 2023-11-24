@@ -12,33 +12,33 @@
     </ion-card-header>
 
     <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="nuevoUser"> </ion-input>
+      <ion-input label="Usuario" labelPlacement="floating" [(ngModel)]="mdl_usuario"> </ion-input>
     </ion-item>
 
+    
     <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input type="{{ showPassword ? 'text' : 'password' }}" label="Contraseña" [(ngModel)]="nuevaContrasena" labelPlacement="floating"></ion-input>
+      <ion-input label="Correo" labelPlacement="floating" [(ngModel)]="mdl_correo"> </ion-input>
+    </ion-item>
+    
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="mdl_nombre"> </ion-input>
+    </ion-item>
+    
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input label="Apellido" labelPlacement="floating" [(ngModel)]="mdl_apellido"> </ion-input>
+    </ion-item>
+    
+    <ion-item class="fondo input ion-margin-top" lines="none">
+      <ion-input type="{{ showPassword ? 'text' : 'password' }}" label="Contraseña" [(ngModel)]="mdl_contrasena" labelPlacement="floating"></ion-input>
       <ion-buttons slot="end">
         <ion-buttons (click)="togglePassword()">
           <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" size="small"></ion-icon>
         </ion-buttons>
       </ion-buttons>
     </ion-item>
-
-    <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Correo" labelPlacement="floating" [(ngModel)]="nuevoCorreo"> </ion-input>
-    </ion-item>
-
-    <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="nuevoNombre"> </ion-input>
-    </ion-item>
-
-    <ion-item class="fondo input ion-margin-top" lines="none">
-      <ion-input label="Apellido" labelPlacement="floating" [(ngModel)]="nuevoApellido"> </ion-input>
-    </ion-item>
-
     
-
+    
     <ion-button (click)="almacenarUsuario()" expand="" class="btn-reg">Registrarme</ion-button>
-
+    
   </ion-card>
 </ion-content>

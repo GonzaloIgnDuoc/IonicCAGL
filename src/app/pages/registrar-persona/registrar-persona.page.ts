@@ -7,11 +7,11 @@ import { BaseDatosService } from 'src/app/services/base-datos.service';
   styleUrls: ['./registrar-persona.page.scss'],
 })
 export class RegistrarPersonaPage implements OnInit {
-  nuevoUser: string='';
-  nuevoCorreo: string='';
-  nuevoNombre: string='';
-  nuevoApellido :string='';
-  nuevaContrasena :string='';
+  mdl_usuario: string='';
+  mdl_correo: string='';
+  mdl_nombre: string='';
+  mdl_apellido :string='';
+  mdl_contrasena :string='';
 
 
   showPassword: boolean = false;
@@ -22,19 +22,15 @@ export class RegistrarPersonaPage implements OnInit {
   }
   almacenarUsuario(){
     this.db.almacenarUsuario(
-      this.nuevoUser,
-      this.nuevoCorreo,
-      this.nuevoNombre,
-      this.nuevoApellido,
-      this.nuevaContrasena
+      this.mdl_usuario,
+      this.mdl_correo,
+      this.mdl_nombre,
+      this.mdl_apellido,
+      this.mdl_contrasena
     );
     this.router.navigate(['login'])
   }
 
-
-  volver(){
-    this.router.navigate(['login'])
-  }
   togglePassword() {
     this.showPassword = !this.showPassword;
   }

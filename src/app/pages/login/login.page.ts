@@ -15,20 +15,30 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private db: BaseDatosService) { }
 
   ngOnInit() {
-    
+    console.log('Usuario en login: '+ this.mdl_usuario)
   }
-  ingresar(){
+  navegarRegistro(){
+    this.router.navigate(['registrar-persona'])
+  }
+
+  login(){
     let extras: NavigationExtras = {
-      
+      replaceUrl: true,
       state:{
         usuario: this.mdl_usuario,
         contrasena: this.mdl_contrasena
-      },replaceUrl: true
+      }
     }
-    this.router.navigate(['principal'],extras)
-  }
 
-  navegarRegistro(){
-    this.router.navigate(['registrar-persona'])
+    this.db.loginUsuario(this.mdl_usuario,this.mdl_contrasena)
+      .then(data =>{
+        if(data == 1){
+          console.log('CAGL: credenciales validas')
+          this.router.navigate(['principal'],extras);
+        }else{
+          console.log('CAGL: credenciales invalidas')
+        }
+      })
+    
   }
 }
